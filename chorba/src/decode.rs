@@ -14,6 +14,18 @@ pub trait Decoder<T: Sized> {
     fn decode(data: &[u8]) -> Result<T, DecodeError>;
 }
 
+impl Decoder<String> for String {
+    fn decode(data: &[u8]) -> Result<String, DecodeError> {
+        Ok(String::from_utf8_lossy(data).to_string())
+    }
+}
+
+impl Decoder<Vec<u8>> for Vec<u8> {
+    fn decode(data: &[u8]) -> Result<Vec<u8>, DecodeError> {
+        Ok(data.to_vec())
+    }
+}
+
 pub fn deserialize(bytes: &[u8]) -> Option<(&[u8], &[u8])> {
     if bytes.len() < LENGTH_TAG_BYTES {
         return None;
