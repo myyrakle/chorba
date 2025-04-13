@@ -2,8 +2,15 @@
 name = "chorba_macro"
 version = "0.1.0"
 edition = "2024"
+description = "chorba macro"
+license = "MIT"
 
 [dependencies]
+syn = { version = "2", features = ["full", "extra-traits"] }
+quote = "1.0"
+
+[lib]
+proc-macro=true
 
 [lints]
 workspace = true

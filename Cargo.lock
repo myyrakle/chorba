@@ -16,6 +16,10 @@ version = "0.1.0"
 [[package]]
 name = "chorba_macro"
 version = "0.1.0"
+dependencies = [
+ "quote",
+ "syn",
+]
 
 [[package]]
 name = "proc-macro2"
