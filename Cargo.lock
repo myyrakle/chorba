@@ -6,12 +6,16 @@ version = 4
 name = "chorba"
 version = "0.1.0"
 dependencies = [
+ "chorba_macro",
  "thiserror",
 ]
 
 [[package]]
 name = "chorba_example"
 version = "0.1.0"
+dependencies = [
+ "chorba",
+]
 
 [[package]]
 name = "chorba_macro"
