@@ -4,8 +4,6 @@ use crate::LENGTH_TAG_BYTES;
 pub enum DecodeError {
     #[error("Invalid data length")]
     InvalidLength,
-    #[error("Invalid data format")]
-    InvalidFormat,
     #[error("Decoding error: {0}")]
     Other(String),
 }

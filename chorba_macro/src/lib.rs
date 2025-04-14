@@ -49,8 +49,9 @@ pub fn derive_decode(item: TokenStream) -> TokenStream {
     new_code += format!(r#"impl chorba::Decoder<{struct_name}> for {struct_name} {{"#).as_str();
 
     {
-        new_code += format!(r#"fn decode(buffer: &[u8]) -> Result<{struct_name}, DecodeError> {{"#)
-            .as_str();
+        new_code +=
+            format!(r#"fn decode(buffer: &[u8]) -> Result<{struct_name}, chorba::DecodeError> {{"#)
+                .as_str();
 
         {
             let mut field_names = vec![];
@@ -62,11 +63,11 @@ pub fn derive_decode(item: TokenStream) -> TokenStream {
                 field_names.push(field_name.clone());
 
                 new_code +=
-                    format!(r#"let ({field_name}_bytes, buffer) = chorba::deserialize(buffer)?;"#)
+                    format!(r#"let ({field_name}_bytes, buffer) = chorba::deserialize(buffer).ok_or(chorba::DecodeError::InvalidLength)?;"#)
                         .as_str();
 
                 new_code +=
-                    format!(r#"let {field_name} = chorba::Decoder<{field_type}>::decode({field_name}_bytes);"#)
+                    format!(r#"let {field_name} = <{field_type} as chorba::Decoder::<{field_type}>>::decode({field_name}_bytes)?;"#)
                         .as_str();
             }
 
@@ -76,7 +77,7 @@ pub fn derive_decode(item: TokenStream) -> TokenStream {
                 new_code += format!(r#"{field_name},"#).as_str();
             }
 
-            new_code += "}";
+            new_code += "})";
         }
 
         new_code += r#"}"#;
