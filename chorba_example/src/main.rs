@@ -1,4 +1,4 @@
-use chorba::{Decode, Decoder, Encode, decode, encode};
+use chorba::{Decode, Encode, decode, encode};
 
 #[derive(Encode, Decode, Debug)]
 pub struct TestPacket {
