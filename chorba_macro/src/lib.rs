@@ -1,4 +1,9 @@
-#[proc_macro_derive(Encoder)]
+use std::str::FromStr;
+
+use proc_macro::TokenStream;
+use quote::ToTokens;
+
+#[proc_macro_derive(Encode)]
 pub fn derive_encode(item: TokenStream) -> TokenStream {
     let mut new_code = "".to_string();
 
@@ -33,8 +38,8 @@ pub fn derive_encode(item: TokenStream) -> TokenStream {
     return TokenStream::from_str(new_code.as_str()).unwrap();
 }
 
-#[proc_macro_derive(Decoder)]
-pub fn derive_encode(item: TokenStream) -> TokenStream {
+#[proc_macro_derive(Decode)]
+pub fn derive_decode(item: TokenStream) -> TokenStream {
     let mut new_code = "".to_string();
 
     let ast = syn::parse_macro_input!(item as syn::ItemStruct);
