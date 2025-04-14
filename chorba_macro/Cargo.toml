@@ -1,9 +1,17 @@
 [package]
 name = "chorba_macro"
 version = "0.1.0"
+authors = ["myyrakle <sssang97@naver.com>"] 
 edition = "2024"
 description = "chorba macro"
+keywords = ["encode", "binary"] 
 license = "MIT"
+include = ["src/*", "Cargo.toml"]
+exclude = []
+readme = "../README.md" 
+repository = "https://github.com/myyrakle/chorba"
+documentation = "https://github.com/myyrakle/chorba/blob/master/README.md"
+homepage = "https://github.com/myyrakle/chorba/blob/master/README.md"
 
 [dependencies]
 syn = { version = "2", features = ["full", "extra-traits"] }
