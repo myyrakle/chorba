@@ -23,7 +23,7 @@ pub fn derive_encode(item: TokenStream) -> TokenStream {
                 let field_name = field.ident.as_ref().unwrap().to_string();
 
                 new_code +=
-                    format!(r#"let bytes = chorba::Encoder::encode(self.{field_name});"#).as_str();
+                    format!(r#"let bytes = chorba::Encoder::encode(&self.{field_name});"#).as_str();
                 new_code += format!(r#"buffer.extend(bytes);"#).as_str();
             }
 

@@ -10,6 +10,12 @@ impl Encoder for String {
     }
 }
 
+impl Encoder for &str {
+    fn encode(&self) -> Vec<u8> {
+        serialize_bytes_with_length(self.as_bytes())
+    }
+}
+
 impl Encoder for Vec<u8> {
     fn encode(&self) -> Vec<u8> {
         serialize_bytes_with_length(self)
